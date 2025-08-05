@@ -5,8 +5,6 @@ const products = [
     description: 'Carne, cebolla, papas fritas',
     price: {
       simple: 14000,
-      doble: 17000,
-      triple: 20000
     },
     image: 'gorgori.jpg',
     category: 'Burgers'
@@ -286,4 +284,5 @@ tabs.addEventListener('click', (e) => {
     }
   }
 });
+
 
