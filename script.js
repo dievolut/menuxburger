@@ -136,7 +136,7 @@ const products = [
     price: {
       simple: 14000
     },
-    image: 'gorgori-burger.jpg',
+    image: 'gorgori.jpg',
     category: 'Burgers'
   },
   {
@@ -414,3 +414,4 @@ tabs.addEventListener('click', (e) => {
     }
   }
 });
+
