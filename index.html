@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>X BURGER</title>
   <style>
     * {
@@ -41,7 +41,6 @@
     }
 
     .sticky-container {
-      position: -webkit-sticky;
       position: sticky;
       top: 0;
       background-color: white;
@@ -165,12 +164,11 @@
       padding: 0 16px 16px;
       gap: 8px;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
 
     .tabs::-webkit-scrollbar {
-      display: none; /* Safari and Chrome */
+      display: none;
     }
 
     .tabs button {
@@ -199,18 +197,19 @@
       margin-bottom: 8px;
     }
 
+    /* ✅ CAMBIO: Diseño en columna */
     .product-card {
       margin: 16px;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid #eee;
       display: flex;
-      min-height: 120px;
+      flex-direction: column;
     }
 
     .product-card img {
-      width: 100px;
-      height: 100px;
+      width: 100%;
+      height: auto;
       object-fit: cover;
       flex-shrink: 0;
     }
@@ -233,8 +232,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding: 12px;
-      margin-left: auto;
+      padding: 8px 12px;
     }
 
     .price {
@@ -292,15 +290,15 @@
     <div class="tabs">
       <button data-category="all">Todo</button>
       <button data-category="Burgers">Burgers</button>
-      <button data-category="Sanguches">Sanguches</button>
-      <button data-category="Bebidas">Bebidas</button>
-      <button data-category="Acompañar">Acompañar</button>
+      <button data-category="Tacos">Tacos</button>
+      <button data-category="Quesadillas">Quesadillas</button>
+      <button data-category="Burritos">Burritos</button>
+      <button data-category="Appetizers">Appetizers</button>
     </div>
   </div>
 
   <div class="container">
-    <div id="product-container">
-    </div>
+    <div id="product-container"></div>
   </div>
 
   <button class="cart-button">
