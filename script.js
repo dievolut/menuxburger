@@ -1,15 +1,15 @@
 const products = [
   {
     id: 1,
-    name: 'Tacos Regulares',
-    description: 'Carne, cebolla y cilantro',
-    price: 3.75,
-    image: 'https://images.pexels.com/photos/8474723/pexels-photo-8474723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    category: 'Tacos'
+    name: 'Gorgori',
+    description: 'Carne, cebolla, papas fritas',
+    price: 14000,
+    image: 'gorgori.jpg',
+    category: 'Burgers'
   },
   {
     id: 2,
-    name: 'Tacos de Suadero',
+    name: 'dcxscdjhdskjsd',
     description: 'Suadero, cebolla y cilantro',
     price: 4.00,
     image: 'https://images.pexels.com/photos/5639433/pexels-photo-5639433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
