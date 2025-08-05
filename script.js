@@ -3,7 +3,11 @@ const products = [
     id: 1,
     name: 'Gorgori',
     description: 'Carne, cebolla, papas fritas',
-    price: 14000,
+    price: {
+      simple: 14000,
+      doble: 17000,
+      triple: 20000
+    },
     image: 'gorgori.jpg',
     category: 'Burgers'
   },
@@ -78,13 +82,29 @@ const productContainer = document.getElementById('product-container');
 function renderProducts(productsToRender) {
   productContainer.innerHTML = '';
   productsToRender.forEach(product => {
+    let price;
+    let buttons = '';
+    if (product.category === 'Burgers') {
+      price = product.price.simple;
+      buttons = `
+        <div class="size-buttons">
+          <button class="size-btn active" data-size="simple">Simple</button>
+          <button class="size-btn" data-size="doble">Doble</button>
+          <button class="size-btn" data-size="triple">Triple</button>
+        </div>
+      `;
+    } else {
+      price = product.price;
+    }
+
     const productCard = `
-      <div class="product-card">
+      <div class="product-card" data-product-id="${product.id}">
         <img src="${product.image}" alt="${product.name}">
         <div class="product-details">
           <h3>${product.name}</h3>
           <p>${product.description}</p>
-          <div class="price">$${product.price.toFixed(2)}</div>
+          ${buttons}
+          <div class="price">$${price.toFixed(2)}</div>
         </div>
         <div class="price-add">
           <button class="add-btn" data-id="${product.id}">+</button>
@@ -112,17 +132,55 @@ const cartCount = document.getElementById('cart-count');
 let cart = {};
 
 productContainer.addEventListener('click', (e) => {
+  // Add to cart button
   if (e.target.classList.contains('add-btn')) {
-    const productId = e.target.dataset.id;
-    addToCart(productId);
+    const addButton = e.target;
+    const productId = addButton.dataset.id;
+    const product = products.find(p => p.id == productId);
+
+    if (product.category === 'Burgers') {
+        const productCard = addButton.closest('.product-card');
+        const activeButton = productCard.querySelector('.size-btn.active');
+        const size = activeButton.dataset.size;
+        addToCart(productId, size);
+    } else {
+        addToCart(productId);
+    }
+  }
+
+  // Size selection button
+  if (e.target.classList.contains('size-btn')) {
+    const sizeButton = e.target;
+    const size = sizeButton.dataset.size;
+    const productCard = sizeButton.closest('.product-card');
+    const productId = productCard.dataset.productId;
+    const product = products.find(p => p.id == productId);
+    const priceElement = productCard.querySelector('.price');
+
+    // Update price display
+    priceElement.textContent = `$${product.price[size].toFixed(2)}`;
+
+    // Update active button
+    const sizeButtons = productCard.querySelectorAll('.size-btn');
+    sizeButtons.forEach(btn => btn.classList.remove('active'));
+    sizeButton.classList.add('active');
   }
 });
 
-function addToCart(productId) {
-  if (cart[productId]) {
-    cart[productId]++;
+function addToCart(productId, size = null) {
+  const product = products.find(p => p.id == productId);
+  let cartItemId;
+
+  if (product.category === 'Burgers' && size) {
+    cartItemId = `${productId}-${size}`;
   } else {
-    cart[productId] = 1;
+    cartItemId = productId.toString();
+  }
+
+  if (cart[cartItemId]) {
+    cart[cartItemId]++;
+  } else {
+    cart[cartItemId] = 1;
   }
   updateCartCount();
 }
@@ -155,16 +213,16 @@ const cartItemsContainer = document.getElementById('cart-items');
 
 cartItemsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove-from-cart')) {
-    const productId = e.target.dataset.id;
-    removeFromCart(productId);
+    const cartItemId = e.target.dataset.id;
+    removeFromCart(cartItemId);
   }
 });
 
-function removeFromCart(productId) {
-  if (cart[productId] > 1) {
-    cart[productId]--;
+function removeFromCart(cartItemId) {
+  if (cart[cartItemId] > 1) {
+    cart[cartItemId]--;
   } else {
-    delete cart[productId];
+    delete cart[cartItemId];
   }
   updateCartCount();
   renderCart();
@@ -176,19 +234,37 @@ function renderCart() {
   cartItemsContainer.innerHTML = '';
   let total = 0;
 
-  for (const productId in cart) {
+  for (const cartItemId in cart) {
+    let productId;
+    let size = null;
+    if (cartItemId.includes('-')) {
+      [productId, size] = cartItemId.split('-');
+    } else {
+      productId = cartItemId;
+    }
+
     const product = products.find(p => p.id == productId);
-    const quantity = cart[productId];
-    total += product.price * quantity;
+    const quantity = cart[cartItemId];
+    
+    let price;
+    let name = product.name;
+    if (size) {
+      price = product.price[size];
+      name = `${product.name} (${size})`;
+    } else {
+      price = product.price;
+    }
+
+    total += price * quantity;
 
     const cartItem = `
       <div class="cart-item">
         <div class="cart-item-details">
-          <span>${product.name}</span>
+          <span>${name}</span>
           <span>x${quantity}</span>
-          <span>$${(product.price * quantity).toFixed(2)}</span>
+          <span>$${(price * quantity).toFixed(2)}</span>
         </div>
-        <button class="remove-from-cart" data-id="${product.id}">🗑️</button>
+        <button class="remove-from-cart" data-id="${cartItemId}">🗑️</button>
       </div>
     `;
     cartItemsContainer.innerHTML += cartItem;
@@ -210,3 +286,4 @@ tabs.addEventListener('click', (e) => {
     }
   }
 });
+
