@@ -1,16 +1,146 @@
 const products = [
   {
     id: 1,
-    name: 'Gorgori',
-    description: 'Carne, cebolla, papas fritas',
+    name: 'MARGE BURGER',
+    description: 'Deliciosa hamburguesa con ingredientes frescos',
     price: {
-      simple: 14000,
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
     },
-    image: 'gorgori.jpg',
+    image: 'marge-burger.jpg',
     category: 'Burgers'
   },
   {
     id: 2,
+    name: 'LISA BURGER',
+    description: 'Hamburguesa con un toque especial',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'lisa-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 3,
+    name: 'KRUSTY BURGER',
+    description: 'El clásico sabor de Krusty',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'krusty-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 4,
+    name: 'APU BURGER',
+    description: 'Sabor único de la tienda de Apu',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'apu-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 5,
+    name: 'HOMERO BURGER',
+    description: 'La favorita de Homero',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'homero-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 6,
+    name: 'X BURGER',
+    description: 'Nuestra especialidad',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'x-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 7,
+    name: 'BARNIE BURGER',
+    description: 'Para los amantes del sabor intenso',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'barnie-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 8,
+    name: 'QATAR BURGER',
+    description: 'Un toque exótico en cada bocado',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'qatar-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 9,
+    name: 'BART BURGER',
+    description: 'Para los más atrevidos',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'bart-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 10,
+    name: 'OTTO BURGER',
+    description: 'El clásico de Otto',
+    price: {
+      simple: 8500,
+      doble: 10000,
+      triple: 11800
+    },
+    image: 'otto-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 11,
+    name: 'NELSON BURGER',
+    description: 'Ja, ja!',
+    price: {
+      simple: 8800
+    },
+    image: 'nelson-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 12,
+    name: 'GORGORI BURGER',
+    description: 'La más grande de todas',
+    price: {
+      simple: 14000
+    },
+    image: 'gorgori-burger.jpg',
+    category: 'Burgers'
+  },
+  {
+    id: 13,
     name: 'dcxscdjhdskjsd',
     description: 'Suadero, cebolla y cilantro',
     price: 4.00,
@@ -284,4 +414,3 @@ tabs.addEventListener('click', (e) => {
     }
   }
 });
-
